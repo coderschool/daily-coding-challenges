@@ -1,8 +1,12 @@
 name: Scheduled run
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 on:
   workflow_dispatch:
   schedule:
     - cron: "*/5 */1 * * *" # Every 5 minutes
+  push:
 
 jobs:
   run:
@@ -12,9 +16,22 @@ jobs:
     env:
       GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDS }}
     steps:
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Asia/Ho_Chi_Minh"
+          timezoneMacos: "Asia/Ho_Chi_Minh"
+          timezoneWindows: "Singapore Standard Time"
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: '3.x'
           architecture: 'x64'
-      - run: python main.py
+      - run: pip install nextcord pandas pygsheets requests
+      - name: Dump google credentials
+        run: |
+          mkdir data
+          echo $GOOGLE_CREDS >> data/creds.json
+          cat data/creds.json
+      - run: |
+          echo "Start running..."
+          python3 -u main.py
