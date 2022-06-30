@@ -46,7 +46,7 @@ async def schedule_daily_message():
 		sh.sheet1.update_value(cell, 'yes')
 
 		#posting message
-		channel = bot.get_channel(991378884681547776)
+		channel = bot.get_channel(#INSERT CHANNEL ID HERE)
 		content = f"Hello Coderschool Learners, here is the challenge's link for today {row.url.values[0]}. Good luck!"
 		await channel.send(content)
 
@@ -61,4 +61,4 @@ async def on_ready():
 	await schedule_daily_message()
 
 if __name__ == '__main__':
-	bot.run("")
+	bot.run("#INSERT BOT TOKEN HERE")
