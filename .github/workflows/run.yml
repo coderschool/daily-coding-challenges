@@ -1,0 +1,20 @@
+name: Scheduled run
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 */1 * * *" # Every 5 minutes
+
+jobs:
+  run:
+    name: scheduled-run
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDS }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - run: python main.py
