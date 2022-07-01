@@ -1,14 +1,12 @@
-name: Send Discord Message
+name: Scheduled run
 concurrency: 
-  group: main.py
+  group: ${{ github.ref }}
   cancel-in-progress: true
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *" # Every 30-minute
+    - cron: "*/5 */1 * * *" # Every 5 minutes
   push:
-    branches-ignore:
-      - "main"
 
 jobs:
   run:
@@ -17,6 +15,9 @@ jobs:
     timeout-minutes: 30
     env:
       GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDS }}
+      DS_SERVER: ${{ secrets.DS_SERVER }}
+      WEB_SERVER: ${{ secrets.WEB_SERVER}}
+      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: szenius/set-timezone@v1.0
         with:
@@ -36,4 +37,4 @@ jobs:
           cat data/creds.json
       - run: |
           echo "Start running..."
-          # python3 -u main.py
+          python3 -u main.py
