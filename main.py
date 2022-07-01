@@ -4,7 +4,7 @@ import pandas as pd
 import requests, json, random, datetime, asyncio, os, pygsheets
 
 #get environment var
-bot_token = os.getenv('TOKEN')
+bot_token = os.getenv('BOT_TOKEN')
 creds = os.getenv('GOOGLE_CREDS')
 
 
