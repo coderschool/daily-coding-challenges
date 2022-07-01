@@ -54,11 +54,6 @@ async def schedule_daily_message():
 		content = f"Hello Coderschool Learners, here is the challenge's link for today {row.url.values[0]}. Good luck!"
 		await channel.send(content)
 
-		#get message url and update spreadsheet H column for "message_url"
-		link = channel.history(limit=1).flatten()
-		link_cell = 'H' + str(row.id_challenge.values[0] + 1)
-		sh.sheet1.update_value(link_cell, link)
-
 		#sync spreadsheet and update on memory df
 		sh.sheet1.refresh(update_grid=False)
 		all = sh.sheet1.get_all_records()
