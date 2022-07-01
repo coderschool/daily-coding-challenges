@@ -12,7 +12,6 @@ intents = nextcord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="$", intents=intents)
 
-
 @bot.command(name="hi")
 async def SendMessage(ctx):
 	await ctx.send('Hellopp!')
@@ -31,6 +30,7 @@ async def schedule_daily_message():
 
 	#get current time
 	now = datetime.datetime.now()
+
 	while True:
     	#get latest message info 
 		row = df[(df['posted'] == '') & (df['discord_server'] == 'DS')].head(1)
@@ -46,8 +46,8 @@ async def schedule_daily_message():
 		sh.sheet1.update_value(cell, 'yes')
 
 		#posting message
-		channel = bot.get_channel(#INSERT CHANNEL ID HERE)
-		content = f"Hello Coderschool Learners, here is the challenge's link for today {row.url.values[0]}. Good luck!"
+		channel = bot.get_channel(991378884681547776)
+		content = f"Hello CoderSchool Learners, here is the challenge's link for today {row.url.values[0]}. Good luck!"
 		await channel.send(content)
 
 		#sync spreadsheet and update on memory df
@@ -61,4 +61,4 @@ async def on_ready():
 	await schedule_daily_message()
 
 if __name__ == '__main__':
-	bot.run("#INSERT BOT TOKEN HERE")
+	bot.run("MTgzMzUyOTYzMDE0NzIxNTM2.GHmYXk.8aHm2CUd4gTLFuEvfdc2iroGv5qOtkmWtu5pBQ")
