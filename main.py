@@ -6,6 +6,8 @@ import requests, json, random, datetime, asyncio, os, pygsheets
 #get environment var
 bot_token = os.getenv('BOT_TOKEN')
 creds = os.getenv('GOOGLE_CREDS')
+ds_channel = os.getenv('DS_SERVER')
+web_channel = os.getenv('WEB_SERVER')
 
 
 #authorization
@@ -27,7 +29,7 @@ async def logout(ctx):
 
 async def schedule_daily_message():
 	#open google sheet
-	sh = gc.open("Prototype Spreadsheet")
+	sh = gc.open("code_challenge_db")
 
 	#format spreadsheet into DF
 	all = sh.sheet1.get_all_records()
@@ -50,7 +52,7 @@ async def schedule_daily_message():
 		sh.sheet1.update_value(cell, 'yes')
 
 		#posting message
-		channel = bot.get_channel(991378884681547776)
+		channel = bot.get_channel(ds_channel)
 		content = f"Hello Coderschool Learners, here is the challenge's link for today {row.url.values[0]}. Good luck!"
 		msg = await channel.send(content)
 		
