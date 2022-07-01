@@ -5,14 +5,12 @@ import requests, json, random, datetime, asyncio, os, pygsheets
 
 #get environment var
 bot_token = os.getenv('BOT_TOKEN')
-creds = os.getenv('GOOGLE_CREDS')
-print(creds)
 ds_channel = os.getenv('DS_SERVER')
 web_channel = os.getenv('WEB_SERVER')
 
 
 #authorization
-gc = pygsheets.authorize(service_account_env_var=creds)
+gc = pygsheets.authorize(service_account_env_var='GOOGLE_CREDS')
 
 #nextcord init
 intents = nextcord.Intents.default()
