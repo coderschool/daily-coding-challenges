@@ -11,7 +11,7 @@ web_channel = os.getenv('WEB_SERVER')
 
 
 #authorization
-gc = pygsheets.authorize(service_file=creds)
+gc = pygsheets.authorize(service_account_env_var=creds)
 
 #nextcord init
 intents = nextcord.Intents.default()
