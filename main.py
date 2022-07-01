@@ -6,7 +6,7 @@ import requests, json, random, datetime, asyncio, os, pygsheets
 #get environment var
 bot_token = os.getenv('BOT_TOKEN')
 creds = os.getenv('GOOGLE_CREDS')
-json_creds= json.loads(creds)
+json_creds= json.parse(creds)
 ds_channel = os.getenv('DS_SERVER')
 web_channel = os.getenv('WEB_SERVER')
 
