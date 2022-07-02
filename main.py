@@ -46,14 +46,14 @@ async def schedule_daily_message():
 		print(f"Wait-time: {wait_time}")
 		await asyncio.sleep(wait_time)
 
-		#update spreadsheet before posting, E column for "posted"
-		cell = 'E' + str(row.id_challenge.values[0] + 1)
-		sh.sheet1.update_value(cell, 'yes')
-
 		#posting message
 		channel = bot.get_channel(ds_channel)
 		content = f"Hello Coderschool Learners, here is the challenge's link for today {row.url.values[0]}. Good luck!"
 		msg = await channel.send(content)
+		
+		#update spreadsheet before posting, E column for "posted"
+		cell = 'E' + str(row.id_challenge.values[0] + 1)
+		sh.sheet1.update_value(cell, 'yes')
 		
 		#get message url and update spreadsheet H column for "message_url"
 		link_cell = 'F' + str(row.id_challenge.values[0] + 1)
