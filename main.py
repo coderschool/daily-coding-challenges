@@ -43,7 +43,7 @@ async def schedule_daily_message():
 		#get wait time
 		wait_time = abs((row.time-now).dt.total_seconds().values[0])
 		print(f"Wait-time: {wait_time}")
-		channel = bot.get_channel(ds_channel)
+		channel = bot.get_channel(int(ds_channel))
 		print("1",channel)
 		channel = bot.get_channel(958295881277386802)
 		print("2",channel)
