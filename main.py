@@ -47,6 +47,7 @@ async def schedule_daily_message():
 		await asyncio.sleep(wait_time)
 
 		#posting message
+		print(ds_channel)
 		channel = bot.get_channel(ds_channel)
 		content = f"Hello Coderschool Learners, here is the challenge's link for today {row.url.values[0]}. Good luck!"
 		msg = await channel.send(content)
