@@ -7,8 +7,7 @@ import requests, json, random, datetime, asyncio, os, pygsheets
 bot_token = os.getenv('BOT_TOKEN')
 ds_channel = os.getenv('DS_SERVER')
 web_channel = os.getenv('WEB_SERVER')
-print('ds channel2:', {(secrets.DS_SERVER)})
-      
+
 
 
 #authorization
@@ -18,7 +17,8 @@ gc = pygsheets.authorize(service_account_env_var='GOOGLE_CREDS')
 intents = nextcord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="$", intents=intents)
-print('ds server:',bot.get_channel(ds_channel))
+print('ds channel1:', bot.get_channel(958295881277386802))
+print('ds channel2:', {(secret.DS_SERVER)})
 
 @bot.command(name="hi")
 async def SendMessage(ctx):
