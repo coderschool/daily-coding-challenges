@@ -54,7 +54,7 @@ async def schedule_daily_message():
 		#posting message for DS
 		ds_channel = bot.get_channel(ds_id)
 		content = f"Hello Coderschool Learners, here is the challenge's link for today {row_ds.url.values[0]}. Good luck!"
-		msg = await channel.send(ds_channel)
+		msg = await ds_channel.send(content)
 		
 		#update spreadsheet, E column for "posted"
 		cell = 'E' + str(row_ds.id_challenge.values[0] + 1)
@@ -69,7 +69,7 @@ async def schedule_daily_message():
 		#posting message for WEB
 		web_channel = bot.get_channel(web_id)
 		content = f"test"
-		msg = await channel.send(content)
+		msg = await web_channel.send(content)
 		
 		#update spreadsheet, E column for "posted"
 		cell = 'E' + str(row_web.id_challenge.values[0] + 1)
