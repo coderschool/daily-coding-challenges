@@ -5,8 +5,8 @@ import requests, json, random, datetime, asyncio, os, pygsheets
 
 #get environment var
 bot_token = os.getenv('BOT_TOKEN')
-ds_channel = os.getenv('DS_SERVER')
-web_channel = os.getenv('WEB_SERVER')
+ds_channel = int(os.getenv('DS_SERVER'))
+web_channel = int(os.getenv('WEB_SERVER'))
 
 
 #authorization
@@ -43,15 +43,10 @@ async def schedule_daily_message():
 		#get wait time
 		wait_time = abs((row.time-now).dt.total_seconds().values[0])
 		print(f"Wait-time: {wait_time}")
-		channel = bot.get_channel(int(ds_channel))
-		print("1",channel)
-		channel = bot.get_channel(958295881277386802)
-		print("2",channel)
 		await asyncio.sleep(wait_time)
 
 		#posting message
-
-		
+		channel = bot.get_channel(ds_channel)
 		content = f"Hello Coderschool Learners, here is the challenge's link for today {row.url.values[0]}. Good luck!"
 		msg = await channel.send(content)
 		
