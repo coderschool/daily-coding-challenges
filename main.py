@@ -9,7 +9,6 @@ ds_channel = os.getenv('DS_SERVER')
 web_channel = os.getenv('WEB_SERVER')
 
 
-
 #authorization
 gc = pygsheets.authorize(service_account_env_var='GOOGLE_CREDS')
 
@@ -17,8 +16,6 @@ gc = pygsheets.authorize(service_account_env_var='GOOGLE_CREDS')
 intents = nextcord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="$", intents=intents)
-print('ds channel1:', bot.get_channel(958295881277386802))
-print('ds channel2:', {(secret.DS_SERVER)})
 
 @bot.command(name="hi")
 async def SendMessage(ctx):
@@ -46,11 +43,15 @@ async def schedule_daily_message():
 		#get wait time
 		wait_time = abs((row.time-now).dt.total_seconds().values[0])
 		print(f"Wait-time: {wait_time}")
+		channel = bot.get_channel(ds_channel)
+		print("1",channel)
+		channel = bot.get_channel(958295881277386802)
+		print("2",channel)
 		await asyncio.sleep(wait_time)
 
 		#posting message
 
-		channel = bot.get_channel(ds_channel)
+		
 		content = f"Hello Coderschool Learners, here is the challenge's link for today {row.url.values[0]}. Good luck!"
 		msg = await channel.send(content)
 		
