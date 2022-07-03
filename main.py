@@ -7,7 +7,6 @@ import requests, json, random, datetime, asyncio, os, pygsheets
 bot_token = os.getenv('BOT_TOKEN')
 ds_channel = os.getenv('DS_SERVER')
 web_channel = os.getenv('WEB_SERVER')
-print('ds channel1:', os.environ('DS_SERVER'))
 print('ds channel2:', {(secrets.DS_SERVER)})
       
 
