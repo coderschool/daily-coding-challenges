@@ -7,7 +7,7 @@ import requests, json, random, datetime, asyncio, os, pygsheets
 bot_token = os.getenv('BOT_TOKEN')
 ds_channel = os.getenv('DS_SERVER')
 web_channel = os.getenv('WEB_SERVER')
-
+print('ds server:',ds_channel)
 
 #authorization
 gc = pygsheets.authorize(service_account_env_var='GOOGLE_CREDS')
@@ -47,7 +47,7 @@ async def schedule_daily_message():
 		await asyncio.sleep(wait_time)
 
 		#posting message
-		print('ds server:',ds_channel)
+
 		channel = bot.get_channel(ds_channel)
 		content = f"Hello Coderschool Learners, here is the challenge's link for today {row.url.values[0]}. Good luck!"
 		msg = await channel.send(content)
