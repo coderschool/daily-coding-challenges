@@ -49,7 +49,7 @@ async def schedule_daily_message():
 		print(f"Wait-time: {wait_time}")
 
 		
-		if wait_time >= 0:
+		if wait_time >= 0: #check if the message is in the future (>=0) or in the past (<0)
 			await asyncio.sleep(wait_time)
 			
 			#--------------------------
@@ -58,6 +58,7 @@ async def schedule_daily_message():
 			ds_channel = bot.get_channel(ds_id)
 			content = f"Hello Coderschool Virgil DS Learners, here is the challenge's link for today {row_ds.url.values[0]} \n. Submission time will be valid for 1 day after this announcement. Good luck!"
 			msg = await ds_channel.send(content)
+			print(f'Posted message with id: {row_ds.id_challenge.values[0]} on DS server')
 
 			#update spreadsheet, E column for "posted"
 			cell = 'E' + str(row_ds.id_challenge.values[0] + 1)
@@ -73,6 +74,7 @@ async def schedule_daily_message():
 			web_channel = bot.get_channel(web_id)
 			content = f"Hello Coderschool Virgil Web Learners, here is the challenge's link for today {row_web.url.values[0]} \n. Submission time will be valid for 1 day after this announcement. Good luck!"
 			msg = await web_channel.send(content)
+			print(f'Posted message with id: {row_web.id_challenge.values[0]} on Web server')
 
 			#update spreadsheet, E column for "posted"
 			cell = 'E' + str(row_web.id_challenge.values[0] + 1)
@@ -87,7 +89,9 @@ async def schedule_daily_message():
 			all = sh.sheet1.get_all_records()
 			df = pd.DataFrame(all)
 		else:
+			#create artificial buffer wait-time for github to action a new scheduled run
 			await asyncio.sleep(abs(wait_time))
+			
 			#sync spreadsheet and update on memory df
 			sh.sheet1.refresh(update_grid=False)
 			all = sh.sheet1.get_all_records()
