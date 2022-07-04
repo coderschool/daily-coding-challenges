@@ -32,9 +32,8 @@ jobs:
       - run: pip install nextcord pandas pygsheets requests
       - name: Dump google credentials
         run: |
-          mkdir data
-          echo $GOOGLE_CREDS >> data/creds.json
-          cat data/creds.json
+          mkdir -p discord-bot/data
+          echo $GOOGLE_CREDS >> discord-bot/data/creds.json
       - run: |
           echo "Start running..."
-          python3 -u main.py
+          python3 -u discord-bot/main.py

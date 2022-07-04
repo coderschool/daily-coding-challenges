@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "coderschool-bot",
+  "private_key_id": "ce048bda0bc362cc6360ae4ac1669f7df563d58b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCHo0eT2gUFZJUq\noytqxF0byA+tuyW5J9xovIbyHvQHnWTB6/hkl9k7tWzNoP4gQXqNJ3Grh/RURgy5\neIcvwkTVq1n9Z60dpw0XCwnwtVnqkxocVk+gKcKBe6KJNSIXoqyi4SaROXFgsVkh\nsabrjT7mdf/q2JbNDygE7uotd/JG9ykbB1vQpYJkmBDcNj5uRWxtA68ZHybpUA4m\nIEZrRxfhClVi/zP+K1tXVfDQtbv5MdpL/pFcJhzxfxU8ehfnla40Ka7fPH1SGXBx\ns7wvs8BV+80eCeZKkZTDw6+pfwIcpwfeLic57oNm2FORjyU35lnxP2S2cMlPiUD2\nogk2q0GTAgMBAAECggEAAjX4CVixB4uwFeJT+cR2B8St9VB4q0tKGw6kwU2wSLhY\n93ER+ubot+ZbfdyJ19st8GgOZXhswbu//g9aOeKO0IbEHfMylvNbLVYL8KVApwOE\nXziVyYbicF//u25d69Gz5xZRZtOT8AO/b9DNHjVXz+hDeK1m8Y+1nDVCtuUn0ieP\nPkyd/xpaKjCxLVhnProjyarRvgnI8lZaIqPxIhVeoGQ6WsEuooPPSbJ6RL+uyqtz\nb3AQYoRC9qstlk2PMyVyI56lADgySEaY9+wI7923EFwgOY2LamFj5PPbNg7s2Kk4\nNgtc8c2Vk0u01wrlZsvhfmLjdtO2jdjIJXmswefSrQKBgQC8AOFc/wymBRJ9Yfc6\n6f0PDYky1ZAqAL4HqPpbclueJGN9/orrEhPUM5Ek1R7m3N70Ux3rOK22UdM2eFyS\nLfZNSt9dE542rQnWmUROIzOI0aWzo1nsISf7VsKAgm3ggOaNU7H+cxO+oiaM0Ag6\nUMY1m6BXkoOqt6tuDSWDyuZR5wKBgQC4seYbx/HPdLsnLhGcudr+f/FbhFxfog7k\nCDaphijyhw5LitdWzx/X2Xs7VSUtHZEQG/PYuFhKznjqwNPqCewriejAjB1O78Iv\no/wfWMbLS8RjRDRkhFJN54+Z4wY7m22OLjfcbMFpZ2tWYo0PKf1Ffxv/U2dEmRZD\nfKz+t5U1dQKBgQCbPkraRQ3HxeZ3vL6vWmqJ1I6XeHycApLotmNNwgffdYLmlptV\n806GarKO7KGg14AP1tac1uey5qx3jTo7x1JcjtgU/s8lrQuztkoOD8lNUHj49omZ\nj+N5CzJ/dbSPr0EyMIuJZrNGNpWIr3wr02lo+QKVbbnl7dbUgGybAJ/hvwKBgDd0\nwyEIUiT2adOD06n5bDYKeJAAGDRm1o3FoZQZQmZAAxzPnYTlQCxxkrzn/fej7xCl\nM/yYrXoYsNnb+EVHoXAZQpe9+nbfKrFfTa6j21zjbR5ZNloQGR5nLwkHz7FKJAUS\n/5bh2NkrQmF3yd8JvpCFcASkKFfCl5q/7rm0qcqZAoGAH+qr2VquxdQ3QLOmMOeE\nmSw+bSfmKTKvJY9ZamtguslTs0p1YS6kOHKGXY93VBe/h4cGv8JIOCyEXZx29jZK\nIi2RuW+nR6GZIi2aGWMV6PpT2ixIGtscUMDLqfNa9P0W57sAPylkiI+LqBabFavb\nIGgijNkE8Lfm4AFABf4MDMY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "coderschool-bot@coderschool-bot.iam.gserviceaccount.com",
+  "client_id": "102579768885495052164",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/coderschool-bot%40coderschool-bot.iam.gserviceaccount.com"
+}
