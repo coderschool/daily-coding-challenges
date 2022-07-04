@@ -53,7 +53,7 @@ async def schedule_daily_message():
 		
 		#posting message for DS
 		ds_channel = bot.get_channel(ds_id)
-		content = f"Hello Coderschool Learners, here is the challenge's link for today {row_ds.url.values[0]}. Good luck!"
+		content = f"Hello Coderschool Virgil DS Learners, here is the challenge's link for today {row_ds.url.values[0]}. Submission time will be valid for 1 day after this announcement. Good luck!"
 		msg = await ds_channel.send(content)
 		
 		#update spreadsheet, E column for "posted"
@@ -68,7 +68,7 @@ async def schedule_daily_message():
 		
 		#posting message for WEB
 		web_channel = bot.get_channel(web_id)
-		content = f"test"
+		content = f"Hello Coderschool Virgil Web Learners, here is the challenge's link for today {row_web.url.values[0]}. Submission time will be valid for 1 day after this announcement. Good luck!"
 		msg = await web_channel.send(content)
 		
 		#update spreadsheet, E column for "posted"
