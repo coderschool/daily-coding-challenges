@@ -47,11 +47,13 @@ async def schedule_daily_message():
 		#get wait time
 		wait_time = (row_ds.time-now).dt.total_seconds().values[0]
 		print(f"Wait-time: {wait_time}")
-		await asyncio.sleep(wait_time)
+
 		
 		if wait_time >= 0:
+			await asyncio.sleep(wait_time)
+			
 			#--------------------------
-
+			
 			#posting message for DS
 			ds_channel = bot.get_channel(ds_id)
 			content = f"Hello Coderschool Virgil DS Learners, here is the challenge's link for today {row_ds.url.values[0]} \n. Submission time will be valid for 1 day after this announcement. Good luck!"
@@ -80,12 +82,16 @@ async def schedule_daily_message():
 			link_cell = 'F' + str(row_web.id_challenge.values[0] + 1)
 			sh.sheet1.update_value(link_cell, msg.jump_url)
 
-
 			#sync spreadsheet and update on memory df
 			sh.sheet1.refresh(update_grid=False)
 			all = sh.sheet1.get_all_records()
 			df = pd.DataFrame(all)
-
+		else:
+			await asyncio.sleep(abs(wait_time))
+			#sync spreadsheet and update on memory df
+			sh.sheet1.refresh(update_grid=False)
+			all = sh.sheet1.get_all_records()
+			df = pd.DataFrame(all)
 @bot.event
 async def on_ready():
 	print(f"Logged in as: {bot.user.name}")
