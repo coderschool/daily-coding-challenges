@@ -45,45 +45,46 @@ async def schedule_daily_message():
 		row_web.time = pd.to_datetime(row_web.time)
 		
 		#get wait time
-		wait_time = abs((row_ds.time-now).dt.total_seconds().values[0])
+		wait_time = (row_ds.time-now).dt.total_seconds().values[0]
 		print(f"Wait-time: {wait_time}")
 		await asyncio.sleep(wait_time)
 		
-		#--------------------------
-		
-		#posting message for DS
-		ds_channel = bot.get_channel(ds_id)
-		content = f"Hello Coderschool Virgil DS Learners, here is the challenge's link for today {row_ds.url.values[0]} \n. Submission time will be valid for 1 day after this announcement. Good luck!"
-		msg = await ds_channel.send(content)
-		
-		#update spreadsheet, E column for "posted"
-		cell = 'E' + str(row_ds.id_challenge.values[0] + 1)
-		sh.sheet1.update_value(cell, 'yes')
-		
-		#get message url and update spreadsheet H column for "message_url"
-		link_cell = 'F' + str(row_ds.id_challenge.values[0] + 1)
-		sh.sheet1.update_value(link_cell, msg.jump_url)
-		
-		#--------------------------
-		
-		#posting message for WEB
-		web_channel = bot.get_channel(web_id)
-		content = f"Hello Coderschool Virgil Web Learners, here is the challenge's link for today {row_web.url.values[0]} \n. Submission time will be valid for 1 day after this announcement. Good luck!"
-		msg = await web_channel.send(content)
-		
-		#update spreadsheet, E column for "posted"
-		cell = 'E' + str(row_web.id_challenge.values[0] + 1)
-		sh.sheet1.update_value(cell, 'yes')
-		
-		#get message url and update spreadsheet H column for "message_url"
-		link_cell = 'F' + str(row_web.id_challenge.values[0] + 1)
-		sh.sheet1.update_value(link_cell, msg.jump_url)
+		if wait_time >= 0:
+			#--------------------------
 
-		
-		#sync spreadsheet and update on memory df
-		sh.sheet1.refresh(update_grid=False)
-		all = sh.sheet1.get_all_records()
-		df = pd.DataFrame(all)
+			#posting message for DS
+			ds_channel = bot.get_channel(ds_id)
+			content = f"Hello Coderschool Virgil DS Learners, here is the challenge's link for today {row_ds.url.values[0]} \n. Submission time will be valid for 1 day after this announcement. Good luck!"
+			msg = await ds_channel.send(content)
+
+			#update spreadsheet, E column for "posted"
+			cell = 'E' + str(row_ds.id_challenge.values[0] + 1)
+			sh.sheet1.update_value(cell, 'yes')
+
+			#get message url and update spreadsheet H column for "message_url"
+			link_cell = 'F' + str(row_ds.id_challenge.values[0] + 1)
+			sh.sheet1.update_value(link_cell, msg.jump_url)
+
+			#--------------------------
+
+			#posting message for WEB
+			web_channel = bot.get_channel(web_id)
+			content = f"Hello Coderschool Virgil Web Learners, here is the challenge's link for today {row_web.url.values[0]} \n. Submission time will be valid for 1 day after this announcement. Good luck!"
+			msg = await web_channel.send(content)
+
+			#update spreadsheet, E column for "posted"
+			cell = 'E' + str(row_web.id_challenge.values[0] + 1)
+			sh.sheet1.update_value(cell, 'yes')
+
+			#get message url and update spreadsheet H column for "message_url"
+			link_cell = 'F' + str(row_web.id_challenge.values[0] + 1)
+			sh.sheet1.update_value(link_cell, msg.jump_url)
+
+
+			#sync spreadsheet and update on memory df
+			sh.sheet1.refresh(update_grid=False)
+			all = sh.sheet1.get_all_records()
+			df = pd.DataFrame(all)
 
 @bot.event
 async def on_ready():
