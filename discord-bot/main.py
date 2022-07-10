@@ -56,7 +56,7 @@ async def schedule_daily_message():
 			
 			#posting message for DS
 			ds_channel = bot.get_channel(ds_id)
-			content = f"Hello Coderschool Virgil DS Learners, the challenge for today is ** {row_ds.challenge_used.values[0]} **. \n The contest's link is {row_web.url.values[0]}. \n Submission time will be valid for 1 day after this announcement. Good luck!"
+			content = f"Hello Coderschool Virgil DS Learners, the challenge for today is ** {row_ds.challenge_used.values[0]} **. \n The difficulty is ** {row_ds.difficulty.values[0]} ** \n The contest's link is {row_web.url.values[0]}. \n Submission time will be valid for 1 day after this announcement. Good luck!"
 			msg = await ds_channel.send(content)
 			print(f'Posted message with id: {row_ds.id_challenge.values[0]} on DS server')
 
@@ -72,7 +72,7 @@ async def schedule_daily_message():
 
 			#posting message for WEB
 			web_channel = bot.get_channel(web_id)
-			content = f"Hello Coderschool Virgil Web Learners, the challenge for today is ** {row_web.challenge_used.values[0]} **. \n The contest's link is {row_web.url.values[0]}. \n Submission time will be valid for 1 day after this announcement. Good luck!"
+			content = f"Hello Coderschool Virgil Web Learners, the challenge for today is ** {row_web.challenge_used.values[0]} **. \n The difficulty is ** {row_web.difficulty.values[0]} ** \n The contest's link is {row_web.url.values[0]}. \n Submission time will be valid for 1 day after this announcement. Good luck!"
 			msg = await web_channel.send(content)
 			print(f'Posted message with id: {row_web.id_challenge.values[0]} on Web server')
 
