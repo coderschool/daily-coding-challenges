@@ -19,9 +19,7 @@ bot = commands.Bot(command_prefix="$", intents=intents)
 
 @bot.command(name="hi")
 async def SendMessage(ctx):
-	row_ds = df[(df['posted'] == '') & (df['discord_server'] == 'DS')].head(1)
-	print('row_ds')
-	await ctx.send(row_ds)
+	await ctx.send("Hello")
 
 @bot.command(name="dc")
 async def logout(ctx):
@@ -41,10 +39,12 @@ async def schedule_daily_message():
     		#get latest message info for DS
 		row_ds = df[(df['posted'] == '') & (df['discord_server'] == 'DS')].head(1)
 		row_ds.time = pd.to_datetime(row_ds.time)
+		print(row_ds)
 		
 		#get latest message info for WEB
 		row_web = df[(df['posted'] == '') & (df['discord_server'] == 'Web')].head(1)
 		row_web.time = pd.to_datetime(row_web.time)
+		print(row_web)
 		
 		#get wait time
 		wait_time = (row_ds.time-now).dt.total_seconds().values[0]
