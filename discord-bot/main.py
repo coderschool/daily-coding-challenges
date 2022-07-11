@@ -19,7 +19,9 @@ bot = commands.Bot(command_prefix="$", intents=intents)
 
 @bot.command(name="hi")
 async def SendMessage(ctx):
-	await ctx.send('Hellopp!')
+	row_ds = df[(df['posted'] == '') & (df['discord_server'] == 'DS')].head(1)
+	print('row_ds')
+	await ctx.send(row_ds)
 
 @bot.command(name="dc")
 async def logout(ctx):
