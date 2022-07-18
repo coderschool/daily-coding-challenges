@@ -26,6 +26,9 @@ async def logout(ctx):
 	await bot.close()
 
 async def schedule_daily_message():
+	#get message thumbnail img
+	file = nextcord.File("./data/hackerrank.jpeg", filename="hackerrank.jpeg")
+	
 	#open google sheet
 	sh = gc.open("code_challenge_db")
 
@@ -58,8 +61,14 @@ async def schedule_daily_message():
 			
 			#posting message for DS
 			ds_channel = bot.get_channel(ds_id)
-			content = f"Hello Coderschool Virgil DS Learners, as always the contest's link is {row_ds.url.values[0]} \n The challenge for today is ** {row_ds.challenge_used.values[0]} **. \n Difficulty ** {row_ds.difficulty.values[0]} ** \n Submission time will be valid for 1 day after this announcement. Good luck!"
-			msg = await ds_channel.send(content)
+			embed = nextcord.Embed()
+			embed.description = f"Rules and info click here ->[here](https://discordjs.guide/popular-topics/embeds.html#using-the-embed-constructor). \n\n \
+			Hello Coderschool Virgil DS Learners, as always the contest's link is {row_ds.url.values[0]} \n \
+			The challenge for today is ** {row_ds.challenge_used.values[0]} **. \n \
+			Difficulty ** {row_ds.difficulty.values[0]} ** \n \
+			Submission time will be valid for 1 day after this announcement. Good luck!"
+			embed.set_image(url="attachment://hackerrank.jpeg")
+			msg = await ds_channel.send(file=file, embed=embed)
 			print(f'Posted message with id: {row_ds.id_challenge.values[0]} on DS server')
 
 			#update spreadsheet, E column for "posted"
@@ -74,8 +83,13 @@ async def schedule_daily_message():
 
 			#posting message for WEB
 			web_channel = bot.get_channel(web_id)
-			content = f"Hello Coderschool Virgil Web Learners, as always the contest's link is {row_web.url.values[0]} \n The challenge for today is ** {row_web.challenge_used.values[0]} **. \n Difficulty: ** {row_web.difficulty.values[0]} ** \n Submission time will be valid for 1 day after this announcement. Good luck!"
-			msg = await web_channel.send(content)
+			embed = nextcord.Embed()
+			embed.description = f"Hello Coderschool Virgil Web Learners, as always the contest's link is {row_web.url.values[0]} \n \
+			The challenge for today is ** {row_web.challenge_used.values[0]} **. \n \
+			Difficulty ** {row_web.difficulty.values[0]} ** \n \
+			Submission time will be valid for 1 day after this announcement. Good luck!"
+			embed.set_image(url="attachment://hackerrank.jpeg")
+			msg = await web_channel.send(file=file, embed=embed)
 			print(f'Posted message with id: {row_web.id_challenge.values[0]} on Web server')
 
 			#update spreadsheet, E column for "posted"
@@ -85,7 +99,9 @@ async def schedule_daily_message():
 			#get message url and update spreadsheet H column for "message_url"
 			link_cell = 'F' + str(row_web.id_challenge.values[0] + 1)
 			sh.sheet1.update_value(link_cell, msg.jump_url)
-
+			
+			#--------------------------
+			
 			#sync spreadsheet and update on memory df
 			sh.sheet1.refresh(update_grid=False)
 			all = sh.sheet1.get_all_records()
