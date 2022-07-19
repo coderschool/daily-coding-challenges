@@ -27,7 +27,7 @@ async def logout(ctx):
 
 async def schedule_daily_message():
 	#get message thumbnail img
-	file = nextcord.File("./data/hackerrank.jpeg", filename="hackerrank.jpeg")
+# 	file = nextcord.File("./data/hackerrank.jpeg", filename="hackerrank.jpeg")
 	
 	#open google sheet
 	sh = gc.open("code_challenge_db")
@@ -67,8 +67,8 @@ async def schedule_daily_message():
 			The challenge for today is ** {row_ds.challenge_used.values[0]} **. \n \
 			Difficulty ** {row_ds.difficulty.values[0]} ** \n \
 			Submission time will be valid for 1 day after this announcement. Good luck!"
-			embed.set_image(url="attachment://hackerrank.jpeg")
-			msg = await ds_channel.send(file=file, embed=embed)
+# 			embed.set_image(url="attachment://hackerrank.jpeg")
+			msg = await ds_channel.send(embed=embed)
 			print(f'Posted message with id: {row_ds.id_challenge.values[0]} on DS server')
 
 			#update spreadsheet, E column for "posted"
@@ -88,8 +88,8 @@ async def schedule_daily_message():
 			The challenge for today is ** {row_web.challenge_used.values[0]} **. \n \
 			Difficulty ** {row_web.difficulty.values[0]} ** \n \
 			Submission time will be valid for 1 day after this announcement. Good luck!"
-			embed.set_image(url="attachment://hackerrank.jpeg")
-			msg = await web_channel.send(file=file, embed=embed)
+# 			embed.set_image(url="attachment://hackerrank.jpeg")
+			msg = await web_channel.send(embed=embed)
 			print(f'Posted message with id: {row_web.id_challenge.values[0]} on Web server')
 
 			#update spreadsheet, E column for "posted"
