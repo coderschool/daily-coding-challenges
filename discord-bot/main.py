@@ -62,7 +62,7 @@ async def schedule_daily_message():
 			#posting message for DS
 			ds_channel = bot.get_channel(ds_id)
 			embed = nextcord.Embed()
-			embed.description = f"Rules and info click here ->[here](https://discordjs.guide/popular-topics/embeds.html#using-the-embed-constructor). \n\n \
+			embed.description = f"Rules and info click here ->[here](https://discord.com/channels/957854915194126336/993340344198508615/993841605670871050). \n\n \
 			Hello Coderschool Virgil DS Learners, as always the contest's link is {row_ds.url.values[0]} \n \
 			The challenge for today is ** {row_ds.challenge_used.values[0]} **. \n \
 			Difficulty ** {row_ds.difficulty.values[0]} ** \n \
