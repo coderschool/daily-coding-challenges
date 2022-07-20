@@ -84,7 +84,8 @@ async def schedule_daily_message():
 			#posting message for WEB
 			web_channel = bot.get_channel(web_id)
 			embed = nextcord.Embed()
-			embed.description = f"Hello Coderschool Virgil Web Learners, as always the contest's link is {row_web.url.values[0]} \n \
+			embed.description = f"Rules and info click here ->[here](https://discord.com/channels/912307061310783538/993373092405583912/999348213486211162).\n\n\
+			Hello Coderschool Virgil Web Learners, as always the contest's link is {row_web.url.values[0]} \n \
 			The challenge for today is ** {row_web.challenge_used.values[0]} **. \n \
 			Difficulty ** {row_web.difficulty.values[0]} ** \n \
 			Submission time will be valid for 1 day after this announcement. Good luck!"
