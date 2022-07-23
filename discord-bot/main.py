@@ -42,12 +42,10 @@ async def schedule_daily_message():
     		#get latest message info for DS
 		row_ds = df[(df['posted'] == '') & (df['discord_server'] == 'DS')].head(1)
 		row_ds.time = pd.to_datetime(row_ds.time)
-		print(row_ds)
 		
 		#get latest message info for WEB
 		row_web = df[(df['posted'] == '') & (df['discord_server'] == 'Web')].head(1)
 		row_web.time = pd.to_datetime(row_web.time)
-		print(row_web)
 		
 		#get wait time
 		wait_time = (row_ds.time-now).dt.total_seconds().values[0]
@@ -58,7 +56,6 @@ async def schedule_daily_message():
 			await asyncio.sleep(wait_time)
 			
 			#--------------------------
-			
 			#posting message for DS
 			ds_channel = bot.get_channel(ds_id)
 			embed = nextcord.Embed()
@@ -100,13 +97,7 @@ async def schedule_daily_message():
 			#get message url and update spreadsheet H column for "message_url"
 			link_cell = 'F' + str(row_web.id_challenge.values[0] + 1)
 			sh.sheet1.update_value(link_cell, msg.jump_url)
-			
-			#--------------------------
-			
-			#sync spreadsheet and update on memory df
-			sh.sheet1.refresh(update_grid=False)
-			all = sh.sheet1.get_all_records()
-			df = pd.DataFrame(all)
+
 		else:
 			#create artificial buffer wait-time for github to action a new scheduled run
 			await asyncio.sleep(abs(wait_time))
@@ -115,6 +106,13 @@ async def schedule_daily_message():
 			sh.sheet1.refresh(update_grid=False)
 			all = sh.sheet1.get_all_records()
 			df = pd.DataFrame(all)
+			
+		#--------------------------
+
+		#sync spreadsheet and update on memory df
+		sh.sheet1.refresh(update_grid=False)
+		all = sh.sheet1.get_all_records()
+		df = pd.DataFrame(all)
 @bot.event
 async def on_ready():
 	print(f"Logged in as: {bot.user.name}")
