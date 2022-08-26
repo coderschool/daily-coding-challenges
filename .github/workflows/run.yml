@@ -11,7 +11,7 @@ on:
 jobs:
   run:
     name: scheduled-run
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     timeout-minutes: 30
     env:
       GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDS }}
